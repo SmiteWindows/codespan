@@ -14,7 +14,7 @@ use codespan_reporting::files::{Error, Files};
 // the compatible version range that we claim in our `Cargo.toml`. This could
 // potentially break down-stream builds on a `cargo update`. This is an
 // absolute no-no, breaking much of what we enjoy about Cargo!
-use lsp_types::{Position as LspPosition, Range as LspRange};
+use ls_types::{Position as LspPosition, Range as LspRange};
 
 fn location_to_position(
     line_str: &str,

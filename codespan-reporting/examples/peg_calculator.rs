@@ -12,7 +12,7 @@ use codespan_reporting::files::SimpleFile;
 use codespan_reporting::term::{self, Config};
 
 use rustyline::error::ReadlineError;
-use rustyline::Editor;
+use rustyline::DefaultEditor;
 
 peg::parser! {
     grammar arithmetic() for str {
@@ -47,7 +47,7 @@ fn main() -> anyhow::Result<()> {
 
     let writer = StandardStream::stderr(ColorChoice::Always);
     let config = Config::default();
-    let mut editor = Editor::<()>::new();
+    let mut editor = DefaultEditor::new()?;
 
     loop {
         let line = match editor.readline("> ") {

@@ -4,7 +4,7 @@ members = [
 	"./codespan-reporting",
 	"./codespan-lsp"
 ]
-resolver = "2"
+resolver = "3"
 metadata.version_sync = true
 
 [workspace.lints.clippy]

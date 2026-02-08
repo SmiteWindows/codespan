@@ -841,10 +841,10 @@ impl<'writer, 'config> Renderer<'writer, 'config> {
     /// Adds tab-stop aware unicode-width computations to an iterator over
     /// character indices. Assumes that the character indices begin at the start
     /// of the line.
-    fn char_metrics(
+    fn char_metrics<T: Iterator<Item = (usize, char)>>(
         &self,
-        char_indices: impl Iterator<Item = (usize, char)>,
-    ) -> impl Iterator<Item = (Metrics, char)> {
+        char_indices: T,
+    ) -> impl Iterator<Item = (Metrics, char)> + use<T> {
         use unicode_width::UnicodeWidthChar;
 
         let tab_width = self.config.tab_width;
@@ -1217,6 +1217,6 @@ fn hanging_labels<'labels, 'diagnostic>(
         .iter()
         .enumerate()
         .filter(|(_, (_, _, message))| !message.is_empty())
-        .filter(move |(i, _)| trailing_label.map_or(true, |(j, _)| *i != j))
+        .filter(move |(i, _)| trailing_label.is_none_or(|(j, _)| *i != j))
         .map(|(_, label)| label)
 }

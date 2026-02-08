@@ -83,7 +83,7 @@ impl core::fmt::Display for Error {
 }
 
 #[cfg(feature = "std")]
-use std::error::Error as RustError;
+use core::error::Error as RustError;
 
 #[cfg(not(feature = "std"))]
 use core::error::Error as RustError;

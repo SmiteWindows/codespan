@@ -131,7 +131,6 @@ fn emit_with_style<'files, F: Files<'files> + ?Sized, W: WriteStyle>(
 
 #[cfg(test)]
 mod tests {
-    use alloc::vec::Vec;
 
     use super::*;
 
